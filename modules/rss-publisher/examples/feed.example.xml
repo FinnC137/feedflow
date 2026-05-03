@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  金例 — RSS Publisher 模块
+  展示所有关键规则的正确实现。
+  规则 1: item 按 pubDate 从新到旧排列
+  规则 2: <link> 指向外部源，<guid> 指向 .md 永久链接，两者不同
+  规则 3: <guid> 中 URL 含中文时必须 percent-encode
+  规则 4: <lastBuildDate> 每次修改必须更新
+  规则 5: <description> 纯文本摘要，<content:encoded> CDATA 包裹 HTML 全文
+-->
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+<channel>
+  <title>示例 RSS Feed</title>
+  <link>https://example.github.io/demo/</link>
+  <description>这是一个演示正确 RSS 结构的示例 feed</description>
+  <language>zh-CN</language>
+  <atom:link href="https://example.github.io/demo/rss.xml" rel="self" type="application/rss+xml"/>
+  <lastBuildDate>Sun, 03 May 2026 10:00:00 +0000</lastBuildDate>
+
+  <!-- 第 1 条：最新，pubDate 最大，排最上面 -->
+  <item>
+    <title>每日新闻 — 2026-05-03</title>
+    <!-- 规则 2: link 指向原始外部源 -->
+    <link>https://www.youtube.com/watch?v=example123</link>
+    <!-- 规则 3: guid 指向 .md 永久链接，中文已 percent-encode；规则 2: link ≠ guid -->
+    <guid isPermaLink="true">https://example.github.io/demo/output/2026-05-03/%E6%AF%8F%E6%97%A5%E6%96%B0%E9%97%BB.md</guid>
+    <!-- 规则 5: description 纯文本，≤150 字 -->
+    <description>今日要点：RSS 模块化方案落地，关键规则已通过实战验证并固化到文档。</description>
+    <!-- 规则 5: content:encoded 用 CDATA 包裹 HTML 全文 -->
+    <content:encoded><![CDATA[<h1>每日新闻 — 2026-05-03</h1>
+<p>来源：示例频道 | https://www.youtube.com/watch?v=example123</p>
+<hr>
+<h2>【第一条新闻】</h2>
+<p>这是 HTML 全文内容。注意 &quot; 在 CDATA 中会原样保留为 6 个字符，不影响 XML 解析。</p>
+<hr>]]></content:encoded>
+    <pubDate>Sun, 03 May 2026 10:00:00 +0000</pubDate>
+  </item>
+
+  <!-- 第 2 条：pubDate 晚于第 3 条，排在中间 -->
+  <item>
+    <title>技术周报 — 2026-05-02</title>
+    <link>https://www.youtube.com/watch?v=example456</link>
+    <guid isPermaLink="true">https://example.github.io/demo/output/2026-05-02/%E6%8A%80%E6%9C%AF%E5%91%A8%E6%8A%A5.md</guid>
+    <description>本周技术动态：AI 驱动的开发流程持续优化，模块化设计显著提升多项目复用效率。</description>
+    <content:encoded><![CDATA[<h1>技术周报 — 2026-05-02</h1>
+<p>来源：示例频道 | https://www.youtube.com/watch?v=example456</p>
+<hr>
+<h2>【模块化进展】</h2>
+<p>RSS Publisher 模块已独立封装，支持跨项目复用。</p>
+<hr>]]></content:encoded>
+    <pubDate>Sat, 02 May 2026 23:00:00 +0000</pubDate>
+  </item>
+
+  <!-- 第 3 条：最早，排最后 -->
+  <item>
+    <title>行业观察 — 2026-05-02</title>
+    <link>https://www.youtube.com/watch?v=example789</link>
+    <guid isPermaLink="true">https://example.github.io/demo/output/2026-05-02/%E8%A1%8C%E4%B8%9A%E8%A7%82%E5%AF%9F.md</guid>
+    <description>行业趋势分析：开源工具链在内容分发领域的应用逐渐成熟。</description>
+    <content:encoded><![CDATA[<h1>行业观察 — 2026-05-02</h1>
+<p>来源：示例频道 | https://www.youtube.com/watch?v=example789</p>
+<hr>
+<h2>【趋势分析】</h2>
+<p>越来越多的项目采用 AI 驱动 + GitHub Pages 的轻量级发布方案。</p>
+<hr>]]></content:encoded>
+    <pubDate>Sat, 02 May 2026 22:00:00 +0000</pubDate>
+  </item>
+
+</channel>
+</rss>

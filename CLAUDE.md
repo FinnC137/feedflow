@@ -7,6 +7,7 @@ FeedFlow 是一个**通用信源 → RSS 发布框架**。解决"多个不同规
 当前阶段：**AI 指令驱动**，不依赖 Python 脚本。Claude 读这份手册，按每日清单执行。
 
 设计原则（继承自 ProSummary）：
+
 1. **轻依赖优先**：同等质量下，选依赖最少的方案做主路径
 2. **降级链兜底**：主方案失败→备选→兜底，保证任务能完成
 3. **渐进固化**：先用 CLAUDE.md 指令驱动跑通，稳定后再固化为 Python CLI
@@ -14,20 +15,20 @@ FeedFlow 是一个**通用信源 → RSS 发布框架**。解决"多个不同规
 
 ## 信源家族
 
-| 家族 | 采集方式 | 依赖 |
-|------|----------|------|
-| `youtube` | YouTube RSS → baoyu-youtube-transcript 抓转录 | 代理 |
+| 家族         | 采集方式                                       | 依赖                    |
+| ---------- | ------------------------------------------ | --------------------- |
+| `youtube`  | YouTube RSS → baoyu-youtube-transcript 抓转录 | 代理                    |
 | `bilibili` | bilibili-cli 抓 CC 字幕 / yt-dlp + whisper 降级 | bilibili-cli + Cookie |
-| `rss` | feedparser 解析 RSS/Atom → 正文抓取 | feedparser |
-| `podcast` | 播客 RSS → 下载音频 → whisper 转录 | 待实现 |
+| `rss`      | feedparser 解析 RSS/Atom → 正文抓取              | feedparser            |
+| `podcast`  | 播客 RSS → 下载音频 → whisper 转录                 | 待实现                   |
 
 ## 输出级别
 
-| 级别 | 产出 | 长度参考 |
-|------|------|----------|
-| `heavy` | 清洗后的完整逐字稿（去语气词/时间戳） | 保留原文全部信息 |
-| `default` | 结构化摘要（分组+小标题+关键数据） | 150-300字/条 |
-| `light` | 精简摘要（核心要点 3-5 句话） | ~100字/条 |
+| 级别        | 产出                  | 长度参考       |
+| --------- | ------------------- | ---------- |
+| `heavy`   | 清洗后的完整逐字稿（去语气词/时间戳） | 保留原文全部信息   |
+| `default` | 结构化摘要（分组+小标题+关键数据）  | 150-300字/条 |
+| `light`   | 精简摘要（核心要点 3-5 句话）   | ~100字/条    |
 
 ---
 
@@ -55,6 +56,7 @@ curl -s --proxy http://172.22.240.1:7897 "$RSS_URL" -o "$OUTDIR/rss_raw.xml"
 ```
 
 打开 `$OUTDIR/rss_raw.xml`，读取 `<entry>` 中第一个 `<published>` 的日期。
+
 - 日期 = 今天 CST → 继续
 - 日期 ≠ 今天 → 终止此信源，跳到下一个
 
@@ -146,57 +148,38 @@ C:/Python314/python.exe ~/.agents/skills/xiaoyuzhou-transcribe/scripts/xiaoyuzho
 
 处理结果写入 `$OUTDIR/<source_name>.md`。
 
-## 四、RSS XML 生成
+## 四、RSS 发布
 
-用以下模板生成 RSS 2.0 XML。将 `{{占位符}}` 替换为实际值。
+参见 `modules/rss-publisher/CLAUDE.md`（自包含模块，可复制到其他项目复用）。
 
-**关键规则**（违反复合阅读器可能不显示新文章）：
+本项目参数：
 
-1. **时间倒序**：item 严格按 `<pubDate>` 从新到旧排列，最新文章在最上面
-2. **link ≠ guid**：`<link>` 指向原始外部源（如 YouTube URL），`<guid>` 指向 GitHub Pages 上的 `.md` 永久链接。两者不能相同
-3. **GUID URL 编码**：`<guid>` 中的 URL 若含中文，必须 percent-encode（如 `LT%E8%A7%86%E7%95%8C.md`），否则违反 RSS 2.0 规范
-4. **lastBuildDate 必须更新**：每次追加新 item 时同步更新 `<lastBuildDate>` 为当前 UTC 时间，这是 RSS 阅读器判断是否需要重新解析的关键信号
-5. `<description>` 放纯文本摘要（150 字以内），`<content:encoded>` 放 HTML 全文
+- FEED_PATH: `rss.xml`
+- SITE_URL: `https://finnc137.github.io/feedflow/`
+- FEED_URL: `https://finnc137.github.io/feedflow/rss.xml`
+- CHANNEL_TITLE: `FeedFlow 新闻聚合`
+- CHANNEL_DESC: `多信源 AI 处理新闻摘要`
+- OUTPUT_DIR: `output/`
 
-```xml
-<?xml version="1.0" encoding="UTF-8"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
-<channel>
-  <title>FeedFlow 新闻聚合</title>
-  <link>https://finnc137.github.io/feedflow/</link>
-  <description>多信源 AI 处理新闻摘要</description>
-  <language>zh-CN</language>
-  <atom:link href="https://finnc137.github.io/feedflow/rss.xml" rel="self" type="application/rss+xml"/>
-  <lastBuildDate>{{当前 UTC RFC 822 时间}}</lastBuildDate>
-  {{每一条处理结果按此模板，时间从新到旧排列：}}
-  <item>
-    <title>{{source_name}} — {{日期}}</title>
-    <link>{{原始视频 URL 或外部源 URL}}</link>
-    <guid isPermaLink="true">{{URL-encoded 的 GitHub Pages .md 永久链接}}</guid>
-    <description>{{纯文本摘要，150字以内}}</description>
-    <content:encoded><![CDATA[{{HTML 格式全文}}]]></content:encoded>
-    <pubDate>{{RFC 822 UTC 时间}}</pubDate>
-  </item>
-</channel>
-</rss>
-```
+### 快速检查清单
 
-直接覆盖仓库根目录的 `rss.xml`（唯一 RSS 文件，用于 GitHub Pages 发布）。
+- [ ] `lastBuildDate` 已更新为当前 UTC 时间
+- [ ] item 按 `pubDate` 从新到旧排列
+- [ ] 每个 `<guid>` 中 URL 已 percent-encode（无中文字符）
+- [ ] 每个 `<link>` 指向外部源，`<guid>` 指向 `.md` 永久链接，两者不同
+- [ ] `<description>` 纯文本 ≤150 字，`<content:encoded>` 用 CDATA 包裹 HTML 全文
+- [ ] W3C 验证通过（validity=true, 0 errors）
+- [ ] 只保留最近 20 条 item
 
-## 五、发布
-
-1. 将生成的 RSS XML 写入仓库根目录 `rss.xml`
-2. 确保 item 严格按 `pubDate` 从新到旧排列
-3. 只保留最近 20 条 `<item>`，多余的从 `<item>` 开始标签到 `</item>` 结束标签整段删除
-4. 推送：
+### 发布命令
 
 ```bash
 cd x:/Desktop/Hermes_workspace/FeedFlow && git add rss.xml && git commit -m "Daily: ${DATE}" && git push
 ```
 
-5. 验证：浏览器打开 `https://finnc137.github.io/feedflow/rss.xml`
+验证：`https://finnc137.github.io/feedflow/rss.xml`
 
-## 六、收尾
+## 五、收尾
 
 1. 确认 `$OUTDIR/` 下有当天所有处理结果
 2. 删除 `$OUTDIR/rss_raw.xml`（临时文件）
