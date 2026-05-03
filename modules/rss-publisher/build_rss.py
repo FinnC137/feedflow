@@ -1,15 +1,17 @@
 """
-RSS Publisher — 校验 + 生成
+RSS Publisher — 校验 + 渲染 + 生成
+
+AI 只填 sections 纯文本数组，HTML 和 XML 由本脚本生成。
+
 用法：
-  python build_rss.py --validate articles.json   # 仅校验，返回错误 JSON
-  python build_rss.py --build articles.json       # 校验通过后输出 rss.xml
+  python build_rss.py --validate articles.json    # 校验，返回错误 JSON
+  python build_rss.py --build articles.json        # 校验 → 渲染 → 输出 rss.xml
 """
 
 import json, sys, os, re
 from datetime import datetime, timezone
 from urllib.parse import quote, unquote
 from email.utils import format_datetime
-from pathlib import Path
 
 CHANNEL_DEFAULTS = {
     "title": "FeedFlow News",
@@ -20,12 +22,47 @@ CHANNEL_DEFAULTS = {
 }
 
 
-# ── validation ──────────────────────────────────────────────
+# ── HTML 渲染 ────────────────────────────────────────────────
+
+def render_article_html(article: dict) -> str:
+    """从 sections 结构化数据生成完整的 content:encoded HTML"""
+    parts = []
+
+    # 标题
+    parts.append(f"<h1>{escape_xml(article['title'])}</h1>")
+
+    # 来源行
+    source_label = article.get("source_label", "")
+    source_url = article.get("source_url", "")
+    if source_label and source_url:
+        parts.append(f"<p>来源：{escape_xml(source_label)} | {escape_xml(source_url)}</p>")
+    elif source_label:
+        parts.append(f"<p>来源：{escape_xml(source_label)}</p>")
+    elif source_url:
+        parts.append(f"<p>来源：{escape_xml(source_url)}</p>")
+
+    parts.append("<hr>")
+
+    # 段落区
+    for sec in article.get("sections", []):
+        heading = sec.get("heading", "")
+        if heading:
+            parts.append(f"<h2>{escape_xml(heading)}</h2>")
+        for para in sec.get("paragraphs", []):
+            para = para.strip()
+            if para:
+                parts.append(f"<p>{escape_xml(para)}</p>")
+
+    parts.append("<hr>")
+    return "\n".join(parts)
+
+
+# ── 校验 ──────────────────────────────────────────────────────
 
 def validate(articles, channel=None):
     """返回 [{"level": "error"|"warn", "field": "...", "msg": "..."}]"""
     errors = []
-    required = ["title", "link", "guid_path", "description", "content_html", "pubDate"]
+    required = ["title", "link", "guid_path", "description", "pubDate"]
 
     for i, a in enumerate(articles):
         idx = f"articles[{i}]"
@@ -33,9 +70,32 @@ def validate(articles, channel=None):
         # 必填字段
         for f in required:
             if not a.get(f):
-                errors.append({"level": "error", "field": f"{idx}.{f}", "msg": f"缺少必填字段 {f}"})
+                errors.append({"level": "error", "field": f"{idx}.{f}",
+                               "msg": f"缺少必填字段 {f}"})
 
-        # link ≠ guid（用 guid_path 推算完整 GUID URL 后比较）
+        # sections 必填
+        sections = a.get("sections", [])
+        if not sections:
+            errors.append({"level": "error", "field": f"{idx}.sections",
+                           "msg": "缺少 sections 字段，至少需要 1 个 section"})
+
+        # 校验 sections 结构
+        for si, sec in enumerate(sections):
+            sidx = f"{idx}.sections[{si}]"
+            if not sec.get("heading"):
+                errors.append({"level": "error", "field": f"{sidx}.heading",
+                               "msg": "heading 为空，每节必须有标题"})
+            paras = sec.get("paragraphs", [])
+            if not paras:
+                errors.append({"level": "warn", "field": f"{sidx}.paragraphs",
+                               "msg": "paragraphs 为空"})
+            for pi, p in enumerate(paras):
+                if len(p) > 150:
+                    errors.append({"level": "error", "field": f"{sidx}.paragraphs[{pi}]",
+                                   "msg": f"段落过长（{len(p)} 字），超过 150 字限制",
+                                   "fix": "拆分为 2-3 句一个段落"})
+
+        # link ≠ guid
         link = a.get("link", "")
         guid_path = a.get("guid_path", "")
         if link and guid_path:
@@ -43,71 +103,43 @@ def validate(articles, channel=None):
             full_guid = site.rstrip("/") + "/" + guid_path.lstrip("/")
             if link.rstrip("/") == full_guid.rstrip("/"):
                 errors.append({"level": "error", "field": f"{idx}.link",
-                               "msg": "link 和 guid 指向同一 URL，link 必须指向外部源", "fix": "将 link 改为原始外部源 URL"})
+                               "msg": "link 和 guid 指向同一 URL",
+                               "fix": "link 改为原始外部源 URL"})
 
         # description 长度
         desc = a.get("description", "")
         if len(desc) > 150:
             errors.append({"level": "warn", "field": f"{idx}.description",
-                           "msg": f"description 超过 150 字（当前 {len(desc)} 字）", "fix": "精简到 150 字以内"})
-
-        # content_html 段落检查
-        html = a.get("content_html", "")
-        para_errors = check_paragraphs(html, idx)
-        errors.extend(para_errors)
+                           "msg": f"description 超过 150 字（当前 {len(desc)} 字）",
+                           "fix": "精简到 150 字以内"})
 
         # GUID 中文检查
-        if guid_path:
-            if re.search(r'[一-鿿]', guid_path):
-                encoded = quote(guid_path, safe='/')
-                errors.append({"level": "error", "field": f"{idx}.guid_path",
-                               "msg": f"GUID 路径含中文字符，需 percent-encode", "fix": f"改为 {encoded}"})
+        if guid_path and re.search(r'[一-鿿]', guid_path):
+            encoded = quote(guid_path, safe='/')
+            errors.append({"level": "error", "field": f"{idx}.guid_path",
+                           "msg": "GUID 路径含中文字符，需 percent-encode",
+                           "fix": f"改为 {encoded}"})
 
     # pubDate 排序检查
     pubdates = []
     for a in articles:
         try:
-            pubdates.append(datetime.strptime(a.get("pubDate", ""), "%a, %d %b %Y %H:%M:%S +0000"))
+            pubdates.append(datetime.strptime(a.get("pubDate", ""),
+                            "%a, %d %b %Y %H:%M:%S +0000"))
         except ValueError:
             pass
     if len(pubdates) == len(articles) and pubdates != sorted(pubdates, reverse=True):
         errors.append({"level": "warn", "field": "articles",
-                       "msg": "articles 未按 pubDate 从新到旧排列", "fix": "按 pubDate 降序重新排列"})
+                       "msg": "articles 未按 pubDate 降序排列",
+                       "fix": "按 pubDate 降序重新排列"})
 
     return errors
 
 
-def check_paragraphs(html, idx):
-    """检查 HTML 段落格式"""
-    errors = []
-    # 提取所有 <p>...</p> 内容
-    paras = re.findall(r'<p>(.*?)</p>', html, re.DOTALL)
-    for pi, p in enumerate(paras):
-        text = p.strip()
-        # 去掉 HTML 标签后统计纯文本字数
-        clean = re.sub(r'<[^>]+>', '', text)
-        if len(clean) > 150:
-            errors.append({"level": "error", "field": f"{idx}.content_html.p[{pi}]",
-                           "msg": f"段落过长（{len(clean)} 字），超过 150 字限制", "fix": "拆分为 2-3 句一个 <p>"})
-
-    # 源码行长度检查
-    for li, line in enumerate(html.split('\n')):
-        if len(line) > 200:
-            errors.append({"level": "warn", "field": f"{idx}.content_html",
-                           "msg": f"源码第 {li+1} 行过长（{len(line)} 字符），影响可读性", "fix": "在标签处换行"})
-
-    # 检查 CDATA 陷阱：内容中出现 ]]>
-    if ']]>' in html:
-        errors.append({"level": "error", "field": f"{idx}.content_html",
-                       "msg": "HTML 内容包含 ]]>，会提前关闭 CDATA", "fix": "替换为 ]]]]><![CDATA[>"})
-
-    return errors
-
-
-# ── build ───────────────────────────────────────────────────
+# ── 生成 RSS ──────────────────────────────────────────────────
 
 def build_rss(articles, channel=None):
-    """校验通过后，生成完整 rss.xml 字符串"""
+    """校验通过后，渲染 HTML 并生成完整 rss.xml 字符串"""
     ch = {**CHANNEL_DEFAULTS, **(channel or {})}
 
     # 自动修正：GUID encode
@@ -116,7 +148,6 @@ def build_rss(articles, channel=None):
         if re.search(r'[一-鿿]', gp):
             a["guid_path"] = quote(gp, safe='/')
 
-    # 自动修正：lastBuildDate
     now = datetime.now(timezone.utc)
     lbd = format_datetime(now, usegmt=True)
 
@@ -126,17 +157,22 @@ def build_rss(articles, channel=None):
         guid_url = site + "/" + a["guid_path"].lstrip("/")
         guid_url = quote(unquote(guid_url), safe='/:@')
 
-        # 截断过长的 description
         desc = a["description"]
         if len(desc) > 150:
             desc = desc[:147] + "..."
+
+        content_html = render_article_html(a)
+
+        # CDATA 安全检查
+        if ']]>' in content_html:
+            content_html = content_html.replace(']]>', ']]]]><![CDATA[>')
 
         item = f"""  <item>
     <title>{escape_xml(a['title'])}</title>
     <link>{escape_xml(a['link'])}</link>
     <guid isPermaLink="true">{escape_xml(guid_url)}</guid>
     <description>{escape_xml(desc)}</description>
-    <content:encoded><![CDATA[{a['content_html']}]]></content:encoded>
+    <content:encoded><![CDATA[{content_html}]]></content:encoded>
     <pubDate>{a['pubDate']}</pubDate>
   </item>"""
         items_xml.append(item)
@@ -159,7 +195,7 @@ def escape_xml(s):
     return s.replace("&", "&amp;").replace("<", "&lt;").replace(">", "&gt;").replace('"', "&quot;")
 
 
-# ── CLI ─────────────────────────────────────────────────────
+# ── CLI ───────────────────────────────────────────────────────
 
 if __name__ == "__main__":
     import argparse
