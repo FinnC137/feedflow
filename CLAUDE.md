@@ -85,7 +85,8 @@ yt-dlp --write-auto-sub --sub-lang zh-Hans,zh --convert-subs srt --skip-download
 ```bash
 yt-dlp -x --audio-format mp3 --audio-quality 64K \
   -o "$OUTDIR/audio.%(ext)s" "<video_url>"
-# 再用 faster-whisper 转录
+C:/Python314/python.exe ~/.agents/skills/xiaoyuzhou-transcribe/scripts/xiaoyuzhou_transcribe.py \
+  "local" --audio-path "$OUTDIR/audio.mp3" --output-dir "$OUTDIR" --model base
 ```
 
 ## 三、AI 处理
@@ -178,7 +179,7 @@ yt-dlp -x --audio-format mp3 --audio-quality 64K \
 2. 推送：
 
 ```bash
-cd x:/Desktop/Hermes_workspace/FeedFlow && git add feed.xml && git commit -m "Daily: ${DATE}" && git push
+export https_proxy=http://172.22.240.1:7897 http_proxy=http://172.22.240.1:7897 && cd x:/Desktop/Hermes_workspace/FeedFlow && git add feed.xml && git commit -m "Daily: ${DATE}" && git push
 ```
 
 3. 验证：浏览器打开 `https://finnc137.github.io/feedflow/feed.xml`
