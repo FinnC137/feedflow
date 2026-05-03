@@ -150,43 +150,51 @@ C:/Python314/python.exe ~/.agents/skills/xiaoyuzhou-transcribe/scripts/xiaoyuzho
 
 用以下模板生成 RSS 2.0 XML。将 `{{占位符}}` 替换为实际值。
 
-**规则**：`<description>` 放纯文本摘要（150 字以内），不塞全文。feed.xml 只是索引，全文在 `output/` 目录。
+**关键规则**（违反复合阅读器可能不显示新文章）：
+
+1. **时间倒序**：item 严格按 `<pubDate>` 从新到旧排列，最新文章在最上面
+2. **link ≠ guid**：`<link>` 指向原始外部源（如 YouTube URL），`<guid>` 指向 GitHub Pages 上的 `.md` 永久链接。两者不能相同
+3. **GUID URL 编码**：`<guid>` 中的 URL 若含中文，必须 percent-encode（如 `LT%E8%A7%86%E7%95%8C.md`），否则违反 RSS 2.0 规范
+4. **lastBuildDate 必须更新**：每次追加新 item 时同步更新 `<lastBuildDate>` 为当前 UTC 时间，这是 RSS 阅读器判断是否需要重新解析的关键信号
+5. `<description>` 放纯文本摘要（150 字以内），`<content:encoded>` 放 HTML 全文
 
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
 <channel>
   <title>FeedFlow 新闻聚合</title>
   <link>https://finnc137.github.io/feedflow/</link>
   <description>多信源 AI 处理新闻摘要</description>
   <language>zh-CN</language>
-  <atom:link href="https://finnc137.github.io/feedflow/feed.xml" rel="self" type="application/rss+xml"/>
+  <atom:link href="https://finnc137.github.io/feedflow/rss.xml" rel="self" type="application/rss+xml"/>
   <lastBuildDate>{{当前 UTC RFC 822 时间}}</lastBuildDate>
-  {{每一条处理结果按此模板：}}
+  {{每一条处理结果按此模板，时间从新到旧排列：}}
   <item>
     <title>{{source_name}} — {{日期}}</title>
-    <link>{{原始视频 URL}}</link>
-    <guid isPermaLink="true">https://finnc137.github.io/feedflow/output/{{日期}}/{{source_name}}.md</guid>
+    <link>{{原始视频 URL 或外部源 URL}}</link>
+    <guid isPermaLink="true">{{URL-encoded 的 GitHub Pages .md 永久链接}}</guid>
     <description>{{纯文本摘要，150字以内}}</description>
+    <content:encoded><![CDATA[{{HTML 格式全文}}]]></content:encoded>
     <pubDate>{{RFC 822 UTC 时间}}</pubDate>
   </item>
 </channel>
 </rss>
 ```
 
-直接覆盖仓库根目录的 `feed.xml`（唯一 RSS 文件，用于 GitHub Pages 发布）。
+直接覆盖仓库根目录的 `rss.xml`（唯一 RSS 文件，用于 GitHub Pages 发布）。
 
 ## 五、发布
 
-1. 将生成的 RSS XML 写入仓库根目录 `feed.xml`
-2. 只保留最近 20 条 `<item>`，多余的从 `<item>` 开始标签到 `</item>` 结束标签整段删除
-3. 推送：
+1. 将生成的 RSS XML 写入仓库根目录 `rss.xml`
+2. 确保 item 严格按 `pubDate` 从新到旧排列
+3. 只保留最近 20 条 `<item>`，多余的从 `<item>` 开始标签到 `</item>` 结束标签整段删除
+4. 推送：
 
 ```bash
-cd x:/Desktop/Hermes_workspace/FeedFlow && git add feed.xml && git commit -m "Daily: ${DATE}" && git push
+cd x:/Desktop/Hermes_workspace/FeedFlow && git add rss.xml && git commit -m "Daily: ${DATE}" && git push
 ```
 
-3. 验证：浏览器打开 `https://finnc137.github.io/feedflow/feed.xml`
+5. 验证：浏览器打开 `https://finnc137.github.io/feedflow/rss.xml`
 
 ## 六、收尾
 
