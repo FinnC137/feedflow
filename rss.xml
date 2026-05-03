@@ -6,11 +6,11 @@
   <description>多信源 AI 处理新闻摘要</description>
   <language>zh-CN</language>
   <atom:link href="https://finnc137.github.io/feedflow/rss.xml" rel="self" type="application/rss+xml"/>
-  <lastBuildDate>Sun, 03 May 2026 07:46:17 +0000</lastBuildDate>
+  <lastBuildDate>Sun, 03 May 2026 08:05:13 +0000</lastBuildDate>
 
   <item>
     <title>AI简报 — 2026-05-03</title>
-    <link>https://finnc137.github.io/feedflow/output/2026-05-03/AI%E7%AE%80%E6%8A%A5.md</link>
+    <link>https://simonwillison.net/2026/Apr/24/deepseek-v4/</link>
     <guid isPermaLink="true">https://finnc137.github.io/feedflow/output/2026-05-03/AI%E7%AE%80%E6%8A%A5.md</guid>
     <description>DeepSeek V4发布以极低成本逼近AI前沿；Meta收购机器人初创公司ARI加速具身智能布局；Anthropic冲刺9000亿美元估值融资500亿；苹果开源MLX 0.22支持DeepSeek V4；亚马逊车载摄像头在英国引发隐私争议；RealAI推出多模态实时交互系统Mona。</description>
     <content:encoded><![CDATA[<h1>AI 科技简报 — 2026-05-03</h1>
@@ -34,7 +34,7 @@
 <p>亚马逊旗下Zoox自动驾驶部门宣布将在英国第三方配送车队上安装车内摄像头系统，用于监控驾驶员行为，此举立即引发隐私倡导组织的强烈批评。</p>
 <p>初创公司RealAI宣布推出名为&quot;Mona&quot;的新一代AI交互系统，实现视觉、语音和文字三种模态的无缝融合与实时推理，将应用于下一代智能眼镜和AI助手。</p>
 <hr>]]></content:encoded>
-    <pubDate>Sun, 03 May 2026 07:46:17 +0000</pubDate>
+    <pubDate>Sun, 03 May 2026 08:05:13 +0000</pubDate>
   </item>
 
   <item>
