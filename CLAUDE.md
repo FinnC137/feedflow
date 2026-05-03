@@ -166,7 +166,7 @@ C:/Python314/python.exe ~/.agents/skills/xiaoyuzhou-transcribe/scripts/xiaoyuzho
   <item>
     <title>{{source_name}} — {{日期}}</title>
     <link>{{原始视频 URL}}</link>
-    <guid isPermaLink="false">{{source_name}}-{{日期}}</guid>
+    <guid isPermaLink="true">https://finnc137.github.io/feedflow/output/{{日期}}/{{source_name}}.md</guid>
     <description>{{纯文本摘要，150字以内}}</description>
     <pubDate>{{RFC 822 UTC 时间}}</pubDate>
   </item>
