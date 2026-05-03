@@ -150,31 +150,24 @@ C:/Python314/python.exe ~/.agents/skills/xiaoyuzhou-transcribe/scripts/xiaoyuzho
 
 ## 四、RSS 发布
 
-参见 `modules/rss-publisher/CLAUDE.md`（自包含模块，可复制到其他项目复用）。
+参见 `modules/rss-publisher/CLAUDE.md`。`channel.json` 已配好。
 
-本项目参数：
+### 工作流
 
-- FEED_PATH: `rss.xml`
-- SITE_URL: `https://finnc137.github.io/feedflow/`
-- FEED_URL: `https://finnc137.github.io/feedflow/rss.xml`
-- CHANNEL_TITLE: `FeedFlow 新闻聚合`
-- CHANNEL_DESC: `多信源 AI 处理新闻摘要`
-- OUTPUT_DIR: `output/`
-
-### 快速检查清单
-
-- [ ] `lastBuildDate` 已更新为当前 UTC 时间
-- [ ] item 按 `pubDate` 从新到旧排列
-- [ ] 每个 `<guid>` 中 URL 已 percent-encode（无中文字符）
-- [ ] 每个 `<link>` 指向外部源，`<guid>` 指向 `.md` 永久链接，两者不同
-- [ ] `<description>` 纯文本 ≤150 字，`<content:encoded>` 用 CDATA 包裹 HTML 全文
-- [ ] W3C 验证通过（validity=true, 0 errors）
-- [ ] 只保留最近 20 条 item
+```
+AI 处理信源 → 生成 articles.json
+     ↓
+python modules/rss-publisher/build_rss.py --validate articles.json --channel modules/rss-publisher/channel.json
+     ↓
+┌─ 有 error → 读 errors JSON，修 articles.json，回到上一步
+│
+└─ 全部通过 → python build_rss.py --build articles.json  → rss.xml
+```
 
 ### 发布命令
 
 ```bash
-cd x:/Desktop/Hermes_workspace/FeedFlow && git add rss.xml && git commit -m "Daily: ${DATE}" && git push
+cd x:/Desktop/Hermes_workspace/FeedFlow && git add rss.xml output/ && git commit -m "Daily: ${DATE}" && git -c http.proxy=http://172.22.240.1:7897 push
 ```
 
 验证：`https://finnc137.github.io/feedflow/rss.xml`
