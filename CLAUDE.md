@@ -148,24 +148,31 @@ C:/Python314/python.exe ~/.agents/skills/xiaoyuzhou-transcribe/scripts/xiaoyuzho
 
 ## 四、RSS XML 生成
 
-用以下模板生成 RSS 2.0 XML。将 `{{占位符}}` 替换为实际值：
+用以下模板生成 RSS 2.0 XML。将 `{{占位符}}` 替换为实际值。
+
+**关键规则**：
+- `<content:encoded>` 放 HTML 格式的正文（全文）
+- `<description>` 只放纯文本摘要（150 字以内）
+- `<guid isPermaLink="false">` 用唯一标识符
 
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>
-<rss version="2.0">
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
 <channel>
   <title>FeedFlow 新闻聚合</title>
   <link>https://finnc137.github.io/feedflow/</link>
   <description>多信源 AI 处理新闻摘要</description>
-  <lastBuildDate>{{当天 RFC 822 格式时间}}</lastBuildDate>
-  <generator>FeedFlow (AI-driven)</generator>
+  <language>zh-CN</language>
+  <atom:link href="https://finnc137.github.io/feedflow/feed.xml" rel="self" type="application/rss+xml"/>
+  <lastBuildDate>{{当前 UTC RFC 822 时间}}</lastBuildDate>
   {{每一条处理结果按此模板：}}
   <item>
     <title>{{source_name}} — {{日期}}</title>
     <link>{{原始视频 URL}}</link>
-    <description><![CDATA[{{处理后的正文}}]]></description>
-    <pubDate>{{RFC 822 时间}}</pubDate>
-    <guid>{{source_name}}-{{日期}}</guid>
+    <guid isPermaLink="false">{{source_name}}-{{日期}}</guid>
+    <description>{{纯文本摘要，150字以内}}</description>
+    <content:encoded><![CDATA[{{HTML格式全文}}]]></content:encoded>
+    <pubDate>{{RFC 822 UTC 时间}}</pubDate>
   </item>
 </channel>
 </rss>
