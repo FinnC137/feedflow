@@ -1,0 +1,129 @@
+{
+  "videoId": "CIDVbaXWp64",
+  "title": "硅谷看DeepSeek V4：模型大战、Token Efficiency、算力突围与AGI必经之路【硅谷101视频播客】",
+  "channel": "硅谷101",
+  "channelId": "UCKV2yWPB3wn0RTZh3cTD8YA",
+  "description": "DeepSeek V4发布之际，正值OpenAI GPT-5.5、Kimi K2.6发布，Google官宣新一代TPU，以及Anthropic新融资消息同时出现。\nAI行业再次进入高强度博弈阶段。但这一次，竞争的焦点正在发生变化：随着步入Agentic时代，效率成了智能的一部分。\n这期视频，我们从硅谷视角，与两位资深嘉宾深度探讨了一个关键问题：为什么token efficiency（词元效率）正成为AI的核心指标？DeepSeek V4带给硅谷什么新的压力与启示？当开源模型为闭源巨头画下“死亡线”，大模型商业模式将迎来如何冲击？而英伟达主导的算力体系还能稳固多久？\n\n采访嘉宾：\n肖志斌：ZFLOW AI创始人&CEO、华美半导体协会前主席与董事会顾问\nJenny Xiao：OpenAl前研究员、Leonis Capital 合伙人\n\n时间轴：\n00:00 AI模型之战再起：今年的DeepSeek Moment意味着什么\n02:20 【技术视角解读：肖志斌】\n03:12 DeepSeek V4的三个核心技术：CSA+HCA、mHC与Muon优化器\n07:35 中美技术路径差异：硅谷追求更强智能，中国资源约束倒逼效率创新\n12:26 对领先模型大厂的压力：计算成本压缩到1/3、内存占用降到1/10\n14:45 token效率是达到AGI的必经之路\n15:55 适配国产芯片：短期难替英伟达，长期利好推理部署\n19:05 国产芯片的真实难点：算子、通信、效率、训练稳定性、开发者生态\n26:09 芯片不再“一卡打天下”：训练推理分化，异构计算是未来常态\n31:41 token效率的优化空间：模型结构、存储系统、runtime调度、通信与深度定制\n\n35:10 【硅谷如何看DeepSeek：Jenny Xiao】\n37:00 DeepSeek的真正冲击：为美国模型公司划定了一条“死亡线”\n38:41 效率亦是智能：DeepSeek给AI市场带来的结构性转变\n44:12 Anthropic强势崛起：Claude Code、企业信任与专注编程\n47:35 赢编程者赢AGI？计算机任务皆编程，可衡量成最大优势\n48:54 巨头路线分歧：OpenAI的大而全与Anthropic的少而精 \n52:02 GPT-5.5与OpenAI的反攻：贵出一倍的定价还站得住脚吗？\n56:25 xAI与Meta的困境：马斯克频繁变阵、Meta开源但无差异化\n1:00:15 开源模型蚕食闭源收入：混合部署成为主流\n1:01:18 大模型IPO前夜的隐忧：投资者更在乎ROI\n1:07:07 DeepSeek为何在此时融资？绑定华为昇腾、重塑中国AI生态\n1:09:39 Agentic时代，模型比拼的不止是聪明，更是低成本与稳定性\n\n【关于硅谷101】\n我们是由海内外一线媒体记者/主持人创办的栏目，深度解析硅谷创新趋势，以轻松的风格分享科技行业的最新动态。我们采过顶级科技大佬，积累了数万小时的媒体经验，做过调查性报道，操盘过千万级传播量的知名深度稿，引发全国讨论和微博热搜；致力于将最专业的媒体素养和信息搜集能力转化为易传播的新媒体力量。\n\n旗下同名播客栏目：https://www.youtube.com/@valley101podcast  \n\n关注我们，从这里驶向未来。\n\n联系我们：video@sv101.net\n\n【往期精彩视频】\nhttps://www.youtube.com/watch?v=7D_8zimKtB4\n\nhttps://www.youtube.com/watch?v=tzEWYNQmnmc\n\nhttps://www.youtube.com/watch?v=kjqOsLdvSFg\n\nhttps://www.youtube.com/watch?v=HjopX519nXg\n\nhttps://www.youtube.com/watch?v=pdcT2jwXP0s\n\nhttps://www.youtube.com/watch?v=uCvqXv_FJtI\n\nhttps://www.youtube.com/watch?v=SYuSZIIYOfI&t\n\nhttps://www.youtube.com/watch?v=Tzp0EF-sysI\n\nhttps://www.youtube.com/watch?v=CfxuqbB9dj4\n\nhttps://www.youtube.com/watch?v=ZDXIUO7CRzo\n\nhttps://www.youtube.com/watch?v=18qSqzTdnbs\n\nhttps://www.youtube.com/watch?v=j13RPyHHCWk\n\nhttps://www.youtube.com/watch?v=VJgIENvy14k\n\nhttps://www.youtube.com/watch?v=thUc2wdtUTY\n\nhttps://www.youtube.com/watch?v=Hemlsyob1Ng\n\nhttps://www.youtube.com/watch?v=g5hw1HZfwTc\n\nhttps://www.youtube.com/watch?v=bO6xBjIx9JQ\n\nhttps://www.youtube.com/watch?v=qs0ovkaacls\n\nhttps://www.youtube.com/watch?v=f41vPIkpYh4",
+  "duration": 4259,
+  "publishDate": "2026-04-29",
+  "url": "https://www.youtube.com/watch?v=CIDVbaXWp64",
+  "coverImage": "imgs/cover.jpg",
+  "thumbnailUrl": "https://i.ytimg.com/vi/CIDVbaXWp64/maxresdefault.jpg",
+  "language": {
+    "code": "zh",
+    "name": "Chinese",
+    "isGenerated": false
+  },
+  "chapters": [
+    {
+      "title": "AI模型之战再起：今年的DeepSeek Moment意味着什么",
+      "start": 0,
+      "end": 140
+    },
+    {
+      "title": "【技术视角解读：肖志斌】",
+      "start": 140,
+      "end": 192
+    },
+    {
+      "title": "DeepSeek V4的三个核心技术：CSA+HCA、mHC与Muon优化器",
+      "start": 192,
+      "end": 455
+    },
+    {
+      "title": "中美技术路径差异：硅谷追求更强智能，中国资源约束倒逼效率创新",
+      "start": 455,
+      "end": 746
+    },
+    {
+      "title": "对领先模型大厂的压力：计算成本压缩到1/3、内存占用降到1/10",
+      "start": 746,
+      "end": 885
+    },
+    {
+      "title": "token效率是达到AGI的必经之路",
+      "start": 885,
+      "end": 955
+    },
+    {
+      "title": "适配国产芯片：短期难替英伟达，长期利好推理部署",
+      "start": 955,
+      "end": 1145
+    },
+    {
+      "title": "国产芯片的真实难点：算子、通信、效率、训练稳定性、开发者生态",
+      "start": 1145,
+      "end": 1569
+    },
+    {
+      "title": "芯片不再“一卡打天下”：训练推理分化，异构计算是未来常态",
+      "start": 1569,
+      "end": 1901
+    },
+    {
+      "title": "token效率的优化空间：模型结构、存储系统、runtime调度、通信与深度定制",
+      "start": 1901,
+      "end": 2110
+    },
+    {
+      "title": "【硅谷如何看DeepSeek：Jenny Xiao】",
+      "start": 2110,
+      "end": 2220
+    },
+    {
+      "title": "DeepSeek的真正冲击：为美国模型公司划定了一条“死亡线”",
+      "start": 2220,
+      "end": 2321
+    },
+    {
+      "title": "效率亦是智能：DeepSeek给AI市场带来的结构性转变",
+      "start": 2321,
+      "end": 2652
+    },
+    {
+      "title": "Anthropic强势崛起：Claude Code、企业信任与专注编程",
+      "start": 2652,
+      "end": 2855
+    },
+    {
+      "title": "赢编程者赢AGI？计算机任务皆编程，可衡量成最大优势",
+      "start": 2855,
+      "end": 2934
+    },
+    {
+      "title": "巨头路线分歧：OpenAI的大而全与Anthropic的少而精",
+      "start": 2934,
+      "end": 3122
+    },
+    {
+      "title": "GPT-5.5与OpenAI的反攻：贵出一倍的定价还站得住脚吗？",
+      "start": 3122,
+      "end": 3385
+    },
+    {
+      "title": "xAI与Meta的困境：马斯克频繁变阵、Meta开源但无差异化",
+      "start": 3385,
+      "end": 3615
+    },
+    {
+      "title": "开源模型蚕食闭源收入：混合部署成为主流",
+      "start": 3615,
+      "end": 3678
+    },
+    {
+      "title": "大模型IPO前夜的隐忧：投资者更在乎ROI",
+      "start": 3678,
+      "end": 4027
+    },
+    {
+      "title": "DeepSeek为何在此时融资？绑定华为昇腾、重塑中国AI生态",
+      "start": 4027,
+      "end": 4179
+    },
+    {
+      "title": "Agentic时代，模型比拼的不止是聪明，更是低成本与稳定性",
+      "start": 4179,
+      "end": 4259
+    }
+  ]
+}

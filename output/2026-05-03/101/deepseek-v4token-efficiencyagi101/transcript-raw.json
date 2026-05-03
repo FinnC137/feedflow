@@ -1,0 +1,462 @@
+[
+  {
+    "text": "DeepSeek V4来了",
+    "start": 0,
+    "duration": 1.64
+  },
+  {
+    "text": "最近模型之战又打起来了",
+    "start": 1.64,
+    "duration": 2.8
+  },
+  {
+    "text": "我们讲的是Deepseek",
+    "start": 4.44,
+    "duration": 1.32
+  },
+  {
+    "text": "Deepseek V4",
+    "start": 5.76,
+    "duration": 1.4
+  },
+  {
+    "text": "这就是AGI的样子吗",
+    "start": 7.16,
+    "duration": 1.6
+  },
+  {
+    "text": "比其他开源模型好太多了",
+    "start": 8.76,
+    "duration": 3.04
+  },
+  {
+    "text": "DeepSeek之外",
+    "start": 11.8,
+    "duration": 0.96
+  },
+  {
+    "text": "Kimi K2.6、OpenAI GPT-5.5",
+    "start": 12.76,
+    "duration": 3.24
+  },
+  {
+    "text": "Google新一代TPU",
+    "start": 16,
+    "duration": 1.6
+  },
+  {
+    "text": "以及Anthropic新融资消息几乎同时出现",
+    "start": 17.6,
+    "duration": 3.48
+  },
+  {
+    "text": "在如此多的声音中",
+    "start": 21.08,
+    "duration": 2
+  },
+  {
+    "text": "今年的DeepSeek Moment对AI市场来说",
+    "start": 23.08,
+    "duration": 3.2
+  },
+  {
+    "text": "意味着什么呢",
+    "start": 26.28,
+    "duration": 1.12
+  },
+  {
+    "text": "工程的完成度有非常大的惊喜",
+    "start": 27.4,
+    "duration": 2.64
+  },
+  {
+    "text": "在提高token efficiency（词元效率）上",
+    "start": 30.04,
+    "duration": 1.96
+  },
+  {
+    "text": "继续一骑绝尘",
+    "start": 32,
+    "duration": 1.28
+  },
+  {
+    "text": "混合注意力机制",
+    "start": 33.28,
+    "duration": 1.4
+  },
+  {
+    "text": "CSA（压缩稀疏注意力）",
+    "start": 34.68,
+    "duration": 0.52
+  },
+  {
+    "text": "加HCA（重度压缩注意力）",
+    "start": 35.2,
+    "duration": 0.88
+  },
+  {
+    "text": "mHC（流形约束超连接）",
+    "start": 36.08,
+    "duration": 1
+  },
+  {
+    "text": "还有就是那个Muon的优化器",
+    "start": 37.08,
+    "duration": 1.76
+  },
+  {
+    "text": "Token efficiency（词元效率）是达到AGI",
+    "start": 38.88,
+    "duration": 2.36
+  },
+  {
+    "text": "或者更强agent system（智能体系统）的",
+    "start": 41.24,
+    "duration": 2.48
+  },
+  {
+    "text": "必备之路或者是基础条件",
+    "start": 43.72,
+    "duration": 1.76
+  },
+  {
+    "text": "没有效率 AGI就只能是个demo",
+    "start": 45.48,
+    "duration": 2.84
+  },
+  {
+    "text": "但是有了效率",
+    "start": 48.32,
+    "duration": 1.4
+  },
+  {
+    "text": "AGI才能成为真正的产品和基础设施",
+    "start": 49.72,
+    "duration": 2.4
+  },
+  {
+    "text": "短期看 英伟达并不会被取代",
+    "start": 52.12,
+    "duration": 3.28
+  },
+  {
+    "text": "因为英伟达的优势并不仅仅是一个GPU",
+    "start": 55.4,
+    "duration": 2.96
+  },
+  {
+    "text": "我认为DeepSeek带来的最大风险在于",
+    "start": 58.36,
+    "duration": 3.12
+  },
+  {
+    "text": "它为美国的基础模型公司",
+    "start": 61.48,
+    "duration": 3.88
+  },
+  {
+    "text": "划定了一个“死亡地带”或“死亡线”",
+    "start": 65.4,
+    "duration": 1.96
+  },
+  {
+    "text": "如果你是一家基础模型公司",
+    "start": 67.36,
+    "duration": 1.84
+  },
+  {
+    "text": "而你被开源公司超越了",
+    "start": 69.24,
+    "duration": 2.36
+  },
+  {
+    "text": "你的业务价值基本上就是零",
+    "start": 71.6,
+    "duration": 3.12
+  },
+  {
+    "text": "我认为这里的教训是",
+    "start": 74.72,
+    "duration": 1.28
+  },
+  {
+    "text": "效率也是智能的一部分",
+    "start": 76.04,
+    "duration": 2.24
+  },
+  {
+    "text": "像DeepSeek这样的开源模型",
+    "start": 78.28,
+    "duration": 1.4
+  },
+  {
+    "text": "是美国闭源商业模式面临的",
+    "start": 79.68,
+    "duration": 1.96
+  },
+  {
+    "text": "最大结构性威胁之一",
+    "start": 81.68,
+    "duration": 2.48
+  },
+  {
+    "text": "我认为Anthropic和OpenAI今年将上市",
+    "start": 84.16,
+    "duration": 3.64
+  },
+  {
+    "text": "公开市场对于Anthropic的胃口比对OpenAI的大得多",
+    "start": 87.8,
+    "duration": 5.64
+  },
+  {
+    "text": "很多机构在试图在IPO前抛售OpenAI",
+    "start": 93.44,
+    "duration": 2.64
+  },
+  {
+    "text": "DeepSeek V4的特殊之处不只是模型能力",
+    "start": 96.08,
+    "duration": 3.24
+  },
+  {
+    "text": "而是它支持100万token上下文",
+    "start": 99.32,
+    "duration": 2.4
+  },
+  {
+    "text": "面向agentic coding（智能体编程）和复杂多步任务",
+    "start": 101.72,
+    "duration": 2.92
+  },
+  {
+    "text": "并且被媒体报道已经适配昇腾等芯片",
+    "start": 104.64,
+    "duration": 3.52
+  },
+  {
+    "text": "这被外界视为中国AI和算力生态进一步追赶的重要信号",
+    "start": 108.16,
+    "duration": 3.88
+  },
+  {
+    "text": "这一期视频播客我们与在硅谷的两名嘉宾聊了聊",
+    "start": 112.04,
+    "duration": 3.48
+  },
+  {
+    "text": "对DeepSeek的创新、模型效率",
+    "start": 115.52,
+    "duration": 2.48
+  },
+  {
+    "text": "非英伟达芯片进化的下一步",
+    "start": 118,
+    "duration": 2.16
+  },
+  {
+    "text": "还有硅谷主流模型路线的发展选择",
+    "start": 120.16,
+    "duration": 3.12
+  },
+  {
+    "text": "OpenAI与Antrhopic之战",
+    "start": 123.28,
+    "duration": 2.08
+  },
+  {
+    "text": "商业化落地的思考",
+    "start": 125.36,
+    "duration": 1.52
+  },
+  {
+    "text": "以及从资本市场等等视角都进行了深度探讨",
+    "start": 126.88,
+    "duration": 3.8
+  },
+  {
+    "text": "首先是我与嘉宾肖志斌的对话",
+    "start": 130.68,
+    "duration": 2.88
+  },
+  {
+    "text": "他是资深芯片架构师",
+    "start": 133.56,
+    "duration": 1.96
+  },
+  {
+    "text": "也是ZFLOW AI创始人兼CEO",
+    "start": 135.52,
+    "duration": 1.96
+  },
+  {
+    "text": "及前华美半导体协会主席",
+    "start": 137.48,
+    "duration": 2.52
+  },
+  {
+    "text": "在技术角度之外",
+    "start": 2090.72,
+    "duration": 1.48
+  },
+  {
+    "text": "我们也想从整个硅谷的角度",
+    "start": 2092.2,
+    "duration": 2.44
+  },
+  {
+    "text": "看看DeepSeek带来的影响和启示",
+    "start": 2094.64,
+    "duration": 3.04
+  },
+  {
+    "text": "第二位嘉宾和我们对谈的是OpenAI的前研究员",
+    "start": 2097.68,
+    "duration": 3.88
+  },
+  {
+    "text": "如今从事风险投资行业",
+    "start": 2101.56,
+    "duration": 2.28
+  },
+  {
+    "text": "是硅谷Leonis Capital的合伙人Jenny Xiao",
+    "start": 2103.84,
+    "duration": 3.36
+  },
+  {
+    "text": "我们的对话以全英文进行",
+    "start": 2107.2,
+    "duration": 2.56
+  },
+  {
+    "text": "从两位嘉宾的谈话中 我们能明显感受到",
+    "start": 4179.84,
+    "duration": 3.28
+  },
+  {
+    "text": "AI大模型的发展范式到了一个需要变化的时候了",
+    "start": 4183.12,
+    "duration": 3.92
+  },
+  {
+    "text": "DeepSeek的意义不只是又出了一个强模型",
+    "start": 4187.04,
+    "duration": 3.44
+  },
+  {
+    "text": "而是它让大家看到",
+    "start": 4190.48,
+    "duration": 1.28
+  },
+  {
+    "text": "大模型竞争正在从单点benchmark（基准测试）",
+    "start": 4191.76,
+    "duration": 3.12
+  },
+  {
+    "text": "变成系统竞争",
+    "start": 4194.88,
+    "duration": 1.36
+  },
+  {
+    "text": "模型架构、token efficiency、芯片适配",
+    "start": 4196.24,
+    "duration": 3.56
+  },
+  {
+    "text": "软件栈、商业化、开源生态",
+    "start": 4199.8,
+    "duration": 2.24
+  },
+  {
+    "text": "正在变成同一场战争的不同战场",
+    "start": 4202.04,
+    "duration": 2.92
+  },
+  {
+    "text": "硅谷过去最强的路径是",
+    "start": 4204.96,
+    "duration": 2.4
+  },
+  {
+    "text": "更多GPU、更大模型、更强闭源产品",
+    "start": 4207.36,
+    "duration": 2.68
+  },
+  {
+    "text": "但DeepSeek和Kimi这样的开源模型代表的另一条路径是",
+    "start": 4210.04,
+    "duration": 3.96
+  },
+  {
+    "text": "更高效率、更低成本、更开放生态",
+    "start": 4214,
+    "duration": 3.44
+  },
+  {
+    "text": "以及对本土算力栈的适配",
+    "start": 4217.44,
+    "duration": 1.96
+  },
+  {
+    "text": "这也许不是两种路线",
+    "start": 4219.4,
+    "duration": 2
+  },
+  {
+    "text": "“模型与算力效率“这个关键技术突破点",
+    "start": 4221.4,
+    "duration": 3.36
+  },
+  {
+    "text": "可能是人类到达AGI的必经之路",
+    "start": 4224.76,
+    "duration": 2.48
+  },
+  {
+    "text": "随着AI的发展步入Agentic时代",
+    "start": 4227.24,
+    "duration": 2.68
+  },
+  {
+    "text": "未来的模型赢家可能不只取决于谁的模型最聪明",
+    "start": 4229.92,
+    "duration": 3.72
+  },
+  {
+    "text": "而取决于谁能用最低成本",
+    "start": 4233.64,
+    "duration": 3
+  },
+  {
+    "text": "最稳定地把智能交付给最多开发者和企业",
+    "start": 4236.64,
+    "duration": 3.96
+  },
+  {
+    "text": "好啦 以上就是这期视频的全部内容",
+    "start": 4240.6,
+    "duration": 2.84
+  },
+  {
+    "text": "我是陈茜",
+    "start": 4243.44,
+    "duration": 0.72
+  },
+  {
+    "text": "你们的留言、点赞和转发",
+    "start": 4244.16,
+    "duration": 1.28
+  },
+  {
+    "text": "是支持我们硅谷101做好深度科技和商业内容的最佳动力",
+    "start": 4245.44,
+    "duration": 4
+  },
+  {
+    "text": "我们下期再见啦 bye～",
+    "start": 4249.44,
+    "duration": 2.52
+  }
+]
