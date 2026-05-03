@@ -176,7 +176,8 @@ C:/Python314/python.exe ~/.agents/skills/xiaoyuzhou-transcribe/scripts/xiaoyuzho
 ## 五、发布
 
 1. 用 `$OUTDIR/feed.xml` 覆盖仓库根目录的 `feed.xml`
-2. 推送：
+2. 只保留最近 20 条 `<item>`，多余的从 `<item>` 开始标签到 `</item>` 结束标签整段删除
+3. 推送：
 
 ```bash
 export https_proxy=http://172.22.240.1:7897 http_proxy=http://172.22.240.1:7897 && cd x:/Desktop/Hermes_workspace/FeedFlow && git add feed.xml && git commit -m "Daily: ${DATE}" && git push
