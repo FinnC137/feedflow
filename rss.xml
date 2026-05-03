@@ -6,7 +6,7 @@
   <description>多信源 AI 处理新闻摘要</description>
   <language>zh-CN</language>
   <atom:link href="https://finnc137.github.io/feedflow/rss.xml" rel="self" type="application/rss+xml"/>
-  <lastBuildDate>Sun, 03 May 2026 15:41:23 GMT</lastBuildDate>
+  <lastBuildDate>Sun, 03 May 2026 15:55:57 GMT</lastBuildDate>
   <item>
     <title>老范讲故事 — 2026-05-03</title>
     <link>https://www.youtube.com/watch?v=xp3Rtr3gMtA</link>
@@ -36,7 +36,7 @@
   <item>
     <title>AI简报 — 2026-05-03</title>
     <link>https://simonwillison.net/2026/Apr/24/deepseek-v4/</link>
-    <guid isPermaLink="true">https://finnc137.github.io/feedflow/output/2026-05-03/AI%E7%AE%80%E6%8A%A5-v2.md</guid>
+    <guid isPermaLink="true">https://finnc137.github.io/feedflow/output/2026-05-03/AI%E7%AE%80%E6%8A%A5-v3.md</guid>
     <description>DeepSeek V4发布以极低成本逼近AI前沿；Meta收购机器人初创公司ARI加速具身智能布局；Anthropic冲刺9000亿美元估值融资500亿；苹果开源MLX 0.22支持DeepSeek V4；亚马逊车载摄像头在英国引发隐私争议；RealAI推出多模态实时交互系统Mona。</description>
     <content:encoded><![CDATA[<h1>AI简报 — 2026-05-03</h1>
 <p>来源：多信源编译</p>
