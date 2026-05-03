@@ -119,6 +119,7 @@ yt-dlp -x --audio-format mp3 --audio-quality 64K \
 - 过滤国内相关新闻，只保留国际/跨国内容
 - 保留关键数据、因果关系、观点分析
 - 每条 150-300 字
+- 每 2-3 个句子换行分段，禁止连续超过 150 字不换行
 - 不使用 Markdown 语法
 
 原始文本：
@@ -153,7 +154,7 @@ yt-dlp -x --audio-format mp3 --audio-quality 64K \
 <rss version="2.0">
 <channel>
   <title>FeedFlow 新闻聚合</title>
-  <link>https://example.com/feedflow</link>
+  <link>https://finnc137.github.io/feedflow/</link>
   <description>多信源 AI 处理新闻摘要</description>
   <lastBuildDate>{{当天 RFC 822 格式时间}}</lastBuildDate>
   <generator>FeedFlow (AI-driven)</generator>
@@ -169,15 +170,24 @@ yt-dlp -x --audio-format mp3 --audio-quality 64K \
 </rss>
 ```
 
-写入 `$OUTDIR/feed.xml`，同时更新 `archive/feed.xml`。
+写入 `$OUTDIR/feed.xml`，同时覆盖仓库根目录的 `feed.xml`（用于 GitHub Pages 发布）。
 
-## 五、收尾
+## 五、发布
+
+1. 用 `$OUTDIR/feed.xml` 覆盖仓库根目录的 `feed.xml`
+2. 推送：
+
+```bash
+cd x:/Desktop/Hermes_workspace/FeedFlow && git add feed.xml && git commit -m "Daily: ${DATE}" && git push
+```
+
+3. 验证：浏览器打开 `https://finnc137.github.io/feedflow/feed.xml`
+
+## 六、收尾
 
 1. 确认 `$OUTDIR/` 下有当天所有处理结果
-2. `$OUTDIR/feed.xml` 内容完整可读
-3. `archive/feed.xml` 已同步为最新版本
-4. 删除 `$OUTDIR/rss_raw.xml`（临时文件）
-5. 运行日志追加到 `output/cron-${DATE}.log`
+2. 删除 `$OUTDIR/rss_raw.xml`（临时文件）
+3. 运行日志追加到 `output/cron-${DATE}.log`
 
 ---
 
