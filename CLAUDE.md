@@ -150,14 +150,11 @@ C:/Python314/python.exe ~/.agents/skills/xiaoyuzhou-transcribe/scripts/xiaoyuzho
 
 用以下模板生成 RSS 2.0 XML。将 `{{占位符}}` 替换为实际值。
 
-**关键规则**：
-- `<content:encoded>` 放 HTML 格式的正文（全文）
-- `<description>` 只放纯文本摘要（150 字以内）
-- `<guid isPermaLink="false">` 用唯一标识符
+**规则**：`<description>` 放纯文本摘要（150 字以内），不塞全文。feed.xml 只是索引，全文在 `output/` 目录。
 
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
 <channel>
   <title>FeedFlow 新闻聚合</title>
   <link>https://finnc137.github.io/feedflow/</link>
@@ -171,7 +168,6 @@ C:/Python314/python.exe ~/.agents/skills/xiaoyuzhou-transcribe/scripts/xiaoyuzho
     <link>{{原始视频 URL}}</link>
     <guid isPermaLink="false">{{source_name}}-{{日期}}</guid>
     <description>{{纯文本摘要，150字以内}}</description>
-    <content:encoded><![CDATA[{{HTML格式全文}}]]></content:encoded>
     <pubDate>{{RFC 822 UTC 时间}}</pubDate>
   </item>
 </channel>
