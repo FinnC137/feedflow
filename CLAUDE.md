@@ -178,11 +178,11 @@ C:/Python314/python.exe ~/.agents/skills/xiaoyuzhou-transcribe/scripts/xiaoyuzho
 </rss>
 ```
 
-写入 `$OUTDIR/feed.xml`，同时覆盖仓库根目录的 `feed.xml`（用于 GitHub Pages 发布）。
+直接覆盖仓库根目录的 `feed.xml`（唯一 RSS 文件，用于 GitHub Pages 发布）。
 
 ## 五、发布
 
-1. 用 `$OUTDIR/feed.xml` 覆盖仓库根目录的 `feed.xml`
+1. 将生成的 RSS XML 写入仓库根目录 `feed.xml`
 2. 只保留最近 20 条 `<item>`，多余的从 `<item>` 开始标签到 `</item>` 结束标签整段删除
 3. 推送：
 
