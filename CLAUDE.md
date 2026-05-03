@@ -187,7 +187,7 @@ C:/Python314/python.exe ~/.agents/skills/xiaoyuzhou-transcribe/scripts/xiaoyuzho
 3. 推送：
 
 ```bash
-export https_proxy=http://172.22.240.1:7897 http_proxy=http://172.22.240.1:7897 && cd x:/Desktop/Hermes_workspace/FeedFlow && git add feed.xml && git commit -m "Daily: ${DATE}" && git push
+cd x:/Desktop/Hermes_workspace/FeedFlow && git add feed.xml && git commit -m "Daily: ${DATE}" && git push
 ```
 
 3. 验证：浏览器打开 `https://finnc137.github.io/feedflow/feed.xml`
