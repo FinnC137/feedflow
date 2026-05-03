@@ -1,0 +1,24 @@
+# FeedFlow 信源配置
+# 新增信源 = 在这里加一条记录
+# 不需要改代码，不需要新增 cronjob
+
+sources:
+  - name: "LT视界"
+    family: youtube             # 采集家族: youtube / bilibili / rss / podcast
+    channel_id: UCOsQMj_MZkQ5N7f1OOMB87Q
+    output_level: default       # heavy / default / light
+    filter: international_only  # 过滤规则（family-specific）
+
+  # ─── 示例：B站信源（待信源确认后启用） ───
+  # - name: "某UP主"
+  #   family: bilibili
+  #   uid: 12345678
+  #   output_level: light
+  #   filter: full
+
+  # ─── 示例：RSS博客（待实现） ───
+  # - name: "某独立博客"
+  #   family: rss
+  #   feed_url: https://blog.example.com/feed.xml
+  #   output_level: default
+  #   filter: full
