@@ -7,7 +7,7 @@ RSS Publisher — 校验 + 生成
 
 import json, sys, os, re
 from datetime import datetime, timezone
-from urllib.parse import quote
+from urllib.parse import quote, unquote
 from email.utils import format_datetime
 from pathlib import Path
 
@@ -124,7 +124,7 @@ def build_rss(articles, channel=None):
     for a in articles:
         site = ch["link"].rstrip("/")
         guid_url = site + "/" + a["guid_path"].lstrip("/")
-        guid_url = quote(guid_url, safe='/:@')
+        guid_url = quote(unquote(guid_url), safe='/:@')
 
         # 截断过长的 description
         desc = a["description"]
