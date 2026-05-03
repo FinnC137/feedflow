@@ -2,3 +2,7 @@ secrets.json
 .venv/
 Ref/
 DEVLOG.md
+w3c.html
+output/**/audio.txt
+output/**/.index.json
+output/**/untitled/
