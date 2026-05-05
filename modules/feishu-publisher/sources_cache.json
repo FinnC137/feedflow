@@ -1,0 +1,46 @@
+[
+  {
+    "name": "LT视界",
+    "short_name": "LT视界",
+    "family": "youtube",
+    "url": "[https://www.youtube.com/channel/UCOsQMj_MZkQ5N7f1OOMB87Q](https://www.youtube.com/channel/UCOsQMj_MZkQ5N7f1OOMB87Q)",
+    "output_level": "default",
+    "filter_prompt": "过滤国内新闻，只保留国际/跨国内容",
+    "status": "active",
+    "last_push": "2026-05-05 09:23",
+    "record_id": "recviIEmWuTtQ8"
+  },
+  {
+    "name": "魏知超啥书都读",
+    "short_name": "魏知超",
+    "family": "youtube",
+    "url": "[https://www.youtube.com/@weizhichao/videos](https://www.youtube.com/@weizhichao/videos)",
+    "output_level": "heavy",
+    "filter_prompt": "",
+    "status": "active",
+    "last_push": "2026-05-05 14:07",
+    "record_id": "recviIGz6qrO3C"
+  },
+  {
+    "name": "老范讲故事",
+    "short_name": "老范",
+    "family": "youtube",
+    "url": "[https://www.youtube.com/@StorytellerFan/videos](https://www.youtube.com/@StorytellerFan/videos)",
+    "output_level": "heavy",
+    "filter_prompt": "",
+    "status": "active",
+    "last_push": "2026-05-05 14:22",
+    "record_id": "recviIQ8KRqzQM"
+  },
+  {
+    "name": "再市为人",
+    "short_name": "再市为人",
+    "family": "youtube",
+    "url": "[https://www.youtube.com/@%E5%86%8D%E5%B8%82%E4%B8%BA%E4%BA%BA](https://www.youtube.com/@%E5%86%8D%E5%B8%82%E4%B8%BA%E4%BA%BA)",
+    "output_level": "heavy",
+    "filter_prompt": "要求完全是逐字稿, 不做编辑加工",
+    "status": "active",
+    "last_push": "",
+    "record_id": "recviIW3cKxxfM"
+  }
+]

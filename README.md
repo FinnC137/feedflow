@@ -38,6 +38,55 @@ RSS 2.0 XML → 本地 / Cloudflare R2 / GitHub Pages
 - RSS Feed（当前：本地 `output/` + `archive/feed.xml`）
 - 按日存档（`output/YYYY-MM-DD/<source_name>.md`）
 
+## 配置参考
+
+### sources.yaml
+
+```yaml
+sources:
+  - name: "LT视界"
+    family: youtube
+    channel_id: UCOsQMj_MZkQ5N7f1OOMB87Q
+    output_level: default
+    filter: international_only
+```
+
+`family` 决定采集方式，`output_level` 决定 AI 处理深度。
+
+### secrets.json
+
+参考 `secrets.example.json`。所有敏感信息集中存放：
+
+```json
+{
+  "bilibili_cookie": "",
+  "flomo_webhook": "",
+  "r2": {
+    "account_id": "",
+    "access_key_id": "",
+    "access_key_secret": "",
+    "bucket_name": "feedflow"
+  },
+  "llm": {
+    "provider": "opencode-go",
+    "api_key": "",
+    "model": "deepseek-v4-flash"
+  }
+}
+```
+
+### 代理
+
+境外 API（YouTube、GitHub、R2 等）必须走 `http://172.22.240.1:7897`，境内服务（B站、Flomo）不需要。
+
+## 待扩展
+
+- **B站家族**：bilibili-cli 抓 CC 字幕，无字幕走 yt-dlp + faster-whisper。参考 `Ref/CLAUDE.md`
+- **RSS 博客家族**：feedparser 解析，WebFetch 抓正文
+- **播客家族**：RSS → 音频 → whisper 转录
+- **RSS 发布端点**：Cloudflare R2 或 GitHub Pages（当前仅本地输出）
+- **稳定后固化**：连续 N 次执行不调整流程时，开始写 `main.py`
+
 ## 相关项目
 
 - `LT_News/` — 前身，单一信源（YT LT视界），并行运行中
